@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TPC CHAMPIONS Table</title>
+
+<img src="Media (2).jpg" alt="My photo" width="150" height="150"/>
+
+<style>
+
+* {
+
+margin: 0;
+
+padding: 0;
+
+box-sizing: border-box;
+
+}
+
+ 
+
+body {
+
+font-family: 'Segoe UI', Arial, sans-serif;
+
+background: #525151;
+
+color: #f5dc01;
+
+padding: 20px;
+
+}
+
+ 
+
+header {
+
+background: linear-gradient(90deg, #d4af37, #b8941f);
+
+color: #7a7a7a;
+
+padding: 2rem;
+
+text-align: center;
+
+border-radius: 10px;
+
+margin-bottom: 30px;
+
+}
+
+ 
+
+header h1 {
+
+font-size: 2.5rem;
+
+font-weight: 800;
+
+letter-spacing: 2px;
+
+}
+
+ 
+
+.match-input {
+
+max-width: 1300px;
+
+margin: 0 auto 25px;
+
+background: #2a2a2a;
+
+padding: 25px;
+
+border-radius: 10px;
+
+border: 2px solid #d4af37;
+
+}
+
+ 
+
+.match-input h3 {
+
+color: #d4af37;
+
+margin-bottom: 15px;
+
+text-align: center;
+
+}
+
+ 
+
+.input-row {
+
+display: flex;
+
+gap: 10px;
+
+justify-content: center;
+
+flex-wrap: wrap;
+
+align-items: center;
+
+}
+
+ 
+
+.input-row input {
+
+background: #1a1a1a;
+
+border: 1px solid #555;
+
+color: #fff;
+
+padding: 12px;
+
+border-radius: 6px;
+
+font-size: 1rem;
+
+width: 300px;
+
+}
+
+ 
+
+.input-row input:focus {
+
+outline: none;
+
+border-color: #d4af37;
+
+}
+
+ 
+
+.container {
+
+max-width: 1300px;
+
+margin: 0 auto;
+
+background: #2a2a2a;
+
+border-radius: 10px;
+
+overflow-x: auto;
+
+box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+
+border: 2px solid #d4af37;
+
+}
+
+ 
+
+table {
+
+width: 100%;
+
+border-collapse: collapse;
+
+min-width: 900px;
+
+}
+
+ 
+
+th {
+
+background: #e3f308;
+
+color: #d4af37;
+
+padding: 14px 6px;
+
+text-align: center;
+
+font-weight: 700;
+
+font-size: 0.8rem;
+
+text-transform: uppercase;
+
+border-bottom: 2px solid #d4af37;
+
+}
+
+ 
+
+td {
+
+padding: 12px 6px;
+
+text-align: center;
+
+border-bottom: 1px solid #404040;
+
+}
+
+ 
+
+tr:hover {
+
+background: #333;
+
+}
+
+ 
+
+.pos {
+
+font-weight: bold;
+
+font-size: 1.1rem;
+
+color: #d4af37;
+
+width: 50px;
+
+}
+
+ 
+
+.team {
+
+text-align: left;
+
+font-weight: 600;
+
+font-size: 1.05rem;
+
+padding-left: 15px;
+
+width: 120px;
+
+}
+
+ 
+
+.points {
+
+font-weight: 800;
+
+font-size: 1.2rem;
+
+color: #d4af37;
+
+}
+
+ 
+
+.gd-positive { color: #4ade80; }
+
+.gd-negative { color: #f87171; }
+
+.yellow { color: #facc15; font-weight: 600; }
+
+.red { color: #ef4444; font-weight: 600; }
+
+ 
+
+input[type="number"] {
+
+width: 50px;
+
+background: #1a1a1a;
+
+border: 1px solid #555;
+
+color: #fff;
+
+text-align: center;
+
+padding: 5px;
+
+border-radius: 4px;
+
+font-size: 0.9rem;
+
+}
+
+ 
+
+input[type="number"]:focus {
+
+outline: none;
+
+border-color: #d4af37;
+
+}
+
+ 
+
+.controls {
+
+max-width: 1300px;
+
+margin: 20px auto;
+
+display: flex;
+
+gap: 15px;
+
+justify-content: center;
+
+flex-wrap: wrap;
+
+}
+
+ 
+
+.btn {
+
+background: #d4af37;
+
+color: #1a1a1a;
+
+border: none;
+
+padding: 12px 24px;
+
+border-radius: 6px;
+
+font-weight: 700;
+
+cursor: pointer;
+
+transition: transform 0.2s;
+
+}
+
+ 
+
+.btn:hover {
+
+transform: translateY(-2px);
+
+background: #e5c14c;
+
+}
+
+ 
+
+.btn-reset {
+
+background: #ef4444;
+
+color: #fff;
+
+}
+
+ 
+
+.log {
+
+max-width: 1300px;
+
+margin: 20px auto;
+
+background: #2a2a2a;
+
+padding: 15px;
+
+border-radius: 8px;
+
+max-height: 150px;
+
+overflow-y: auto;
+
+font-size: 0.9rem;
+
+color: #bbb;
+
+}
+
+ 
+
+.log-item {
+
+padding: 5px 0;
+
+border-bottom: 1px solid #333;
+
+}
+
+ 
+
+footer {
+
+text-align: center;
+
+margin-top: 30px;
+
+color: #888;
+
+font-size: 0.9rem;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>TPC CHAMPIONS LEAGUE</h1>
+
+<p>Season 2026 - Auto Match Calculator</p>
+
+</header>
+
+ 
+
+<div class="match-input">
+
+<h3>Add Match Result</h3>
+
+<div class="input-row">
+
+<input type="text" id="matchResult" placeholder="e.g. Chad 2-1 Modise" />
+
+<button class="btn" onclick="addMatchResult()">Add Result</button>
+
+</div>
+
+</div>
+
+ 
+
+<div class="container">
+
+<table id="leagueTable">
+
+<thead>
+
+<tr>
+
+<th>Pos</th>
+
+<th class="team">Team</th>
+
+<th>MP</th>
+
+<th>W</th>
+
+<th>D</th>
+
+<th>L</th>
+
+<th>GS</th>
+
+<th>GC</th>
+
+<th>GD</th>
+
+<th>YC</th>
+
+<th>RC</th>
+
+<th>Pts</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr data-team="Chad">
+
+<td class="pos">1</td>
+
+<td class="team">Chad</td>
+
+<td><input type="number" min="0" value="0" class="mp"></td>
+
+<td><input type="number" min="0" value="0" class="w"></td>
+
+<td><input type="number" min="0" value="0" class="d"></td>
+
+<td><input type="number" min="0" value="0" class="l"></td>
+
+<td><input type="number" min="0" value="0" class="gs"></td>
+
+<td><input type="number" min="0" value="0" class="gc"></td>
+
+<td class="gd">0</td>
+
+<td><input type="number" min="0" value="0" class="yc yellow"></td>
+
+<td><input type="number" min="0" value="0" class="rc red"></td>
+
+<td class="points">0</td>
+
+</tr>
+
+<tr data-team="Modise">
+
+<td class="pos">2</td>
+
+<td class="team">Modise</td>
+
+<td><input type="number" min="0" value="0" class="mp"></td>
+
+<td><input type="number" min="0" value="0" class="w"></td>
+
+<td><input type="number" min="0" value="0" class="d"></td>
+
+<td><input type="number" min="0" value="0" class="l"></td>
+
+<td><input type="number" min="0" value="0" class="gs"></td>
+
+<td><input type="number" min="0" value="0" class="gc"></td>
+
+<td class="gd">0</td>
+
+<td><input type="number" min="0" value="0" class="yc yellow"></td>
+
+<td><input type="number" min="0" value="0" class="rc red"></td>
+
+<td class="points">0</td>
+
+</tr>
+
+<tr data-team="G">
+
+<td class="pos">3</td>
+
+<td class="team">G</td>
+
+<td><input type="number" min="0" value="0" class="mp"></td>
+
+<td><input type="number" min="0" value="0" class="w"></td>
+
+<td><input type="number" min="0" value="0" class="d"></td>
+
+<td><input type="number" min="0" value="0" class="l"></td>
+
+<td><input type="number" min="0" value="0" class="gs"></td>
+
+<td><input type="number" min="0" value="0" class="gc"></td>
+
+<td class="gd">0</td>
+
+<td><input type="number" min="0" value="0" class="yc yellow"></td>
+
+<td><input type="number" min="0" value="0" class="rc red"></td>
+
+<td class="points">0</td>
+
+</tr>
+
+<tr data-team="Lwandle">
+
+<td class="pos">4</td>
+
+<td class="team">Lwandle</td>
+
+<td><input type="number" min="0" value="0" class="mp"></td>
+
+<td><input type="number" min="0" value="0" class="w"></td>
+
+<td><input type="number" min="0" value="0" class="d"></td>
+
+<td><input type="number" min="0" value="0" class="l"></td>
+
+<td><input type="number" min="0" value="0" class="gs"></td>
+
+<td><input type="number" min="0" value="0" class="gc"></td>
+
+<td class="gd">0</td>
+
+<td><input type="number" min="0" value="0" class="yc yellow"></td>
+
+<td><input type="number" min="0" value="0" class="rc red"></td>
+
+<td class="points">0</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+ 
+
+<div class="controls">
+
+<button class="btn" onclick="updateTable()">Update Table</button>
+
+<button class="btn btn-reset" onclick="resetTable()">Reset All</button>
+
+</div>
+
+ 
+
+<div class="log" id="matchLog">
+
+<div class="log-item">Match log will appear here...</div>
+
+</div>
+
+ 
+
+<footer>
+
+<p>© 2026 TPC CHAMPIONS LEAGUE League | Format: TeamA 2-1 TeamB</p>
+
+</footer>
+
+ 
+
+<script>
+
+function getTeamRow(teamName) {
+
+return document.querySelector(`tr[data-team="${teamName}"]`);
+
+}
+
+ 
+
+function addMatchResult() {
+
+const input = document.getElementById('matchResult');
+
+const result = input.value.trim();
+
+ 
+
+// Parse: "Chad 2-1 Modise" or "G 0-0 Lwandle"
+
+const match = result.match(/^(\w+)\s+(\d+)-(\d+)\s+(\w+)$/i);
+
+ 
+
+if (!match) {
+
+alert('Format: TeamA 2-1 TeamB\nExample: Chad 2-1 Modise');
+
+return;
+
+}
+
+ 
+
+const [, teamA, goalsA, goalsB, teamB] = match;
+
+const scoreA = parseInt(goalsA);
+
+const scoreB = parseInt(goalsB);
+
+ 
+
+const rowA = getTeamRow(teamA);
+
+const rowB = getTeamRow(teamB);
+
+ 
+
+if (!rowA || !rowB) {
+
+alert(`Team not found. Teams: Chad, Modise, G, Lwandle`);
+
+return;
+
+}
+
+ 
+
+if (teamA === teamB) {
+
+alert('Teams cannot play themselves');
+
+return;
+
+}
+
+ 
+
+// Update MP, GS, GC
+
+rowA.querySelector('.mp').value = parseInt(rowA.querySelector('.mp').value) + 1;
+
+rowB.querySelector('.mp').value = parseInt(rowB.querySelector('.mp').value) + 1;
+
+ 
+
+rowA.querySelector('.gs').value = parseInt(rowA.querySelector('.gs').value) + scoreA;
+
+rowA.querySelector('.gc').value = parseInt(rowA.querySelector('.gc').value) + scoreB;
+
+ 
+
+rowB.querySelector('.gs').value = parseInt(rowB.querySelector('.gs').value) + scoreB;
+
+rowB.querySelector('.gc').value = parseInt(rowB.querySelector('.gc').value) + scoreA;
+
+ 
+
+// Update W/D/L
+
+if (scoreA > scoreB) {
+
+rowA.querySelector('.w').value = parseInt(rowA.querySelector('.w').value) + 1;
+
+rowB.querySelector('.l').value = parseInt(rowB.querySelector('.l').value) + 1;
+
+} else if (scoreB > scoreA) {
+
+rowB.querySelector('.w').value = parseInt(rowB.querySelector('.w').value) + 1;
+
+rowA.querySelector('.l').value = parseInt(rowA.querySelector('.l').value) + 1;
+
+} else {
+
+rowA.querySelector('.d').value = parseInt(rowA.querySelector('.d').value) + 1;
+
+rowB.querySelector('.d').value = parseInt(rowB.querySelector('.d').value) + 1;
+
+}
+
+ 
+
+// Log it
+
+const log = document.getElementById('matchLog');
+
+const logItem = document.createElement('div');
+
+logItem.className = 'log-item';
+
+logItem.textContent = `${teamA} ${scoreA}-${scoreB} ${teamB}`;
+
+log.insertBefore(logItem, log.firstChild);
+
+ 
+
+input.value = '';
+
+updateTable();
+
+}
+
+ 
+
+function updateTable() {
+
+const rows = document.querySelectorAll('#leagueTable tbody tr');
+
+ 
+
+rows.forEach(row => {
+
+const w = parseInt(row.querySelector('.w').value) || 0;
+
+const d = parseInt(row.querySelector('.d').value) || 0;
+
+const gs = parseInt(row.querySelector('.gs').value) || 0;
+
+const gc = parseInt(row.querySelector('.gc').value) || 0;
+
+ 
+
+const gd = gs - gc;
+
+const gdCell = row.querySelector('.gd');
+
+gdCell.textContent = gd > 0 ? '+' + gd : gd;
+
+gdCell.className = 'gd ' + (gd > 0 ? 'gd-positive' : gd < 0 ? 'gd-negative' : '');
+
+ 
+
+const points = (w * 3) + (d * 1);
+
+row.querySelector('.points').textContent = points;
+
+});
+
+ 
+
+sortTable();
+
+}
+
+ 
+
+function sortTable() {
+
+const tbody = document.querySelector('#leagueTable tbody');
+
+const rows = Array.from(tbody.querySelectorAll('tr'));
+
+ 
+
+rows.sort((a, b) => {
+
+const aPts = parseInt(a.querySelector('.points').textContent);
+
+const bPts = parseInt(b.querySelector('.points').textContent);
+
+if (bPts !== aPts) return bPts - aPts;
+
+ 
+
+const aGd = parseInt(a.querySelector('.gd').textContent);
+
+const bGd = parseInt(b.querySelector('.gd').textContent);
+
+if (bGd !== aGd) return bGd - aGd;
+
+ 
+
+const aGs = parseInt(a.querySelector('.gs').value);
+
+const bGs = parseInt(b.querySelector('.gs').value);
+
+return bGs - aGs;
+
+});
+
+ 
+
+rows.forEach((row, index) => {
+
+row.querySelector('.pos').textContent = index + 1;
+
+tbody.appendChild(row);
+
+});
+
+}
+
+ 
+
+function resetTable() {
+
+if (confirm('Reset all stats to zero?')) {
+
+document.querySelectorAll('input[type="number"]').forEach(input => {
+
+input.value = 0;
+
+});
+
+document.getElementById('matchLog').innerHTML = '<div class="log-item">Match log will appear here...</div>';
+
+updateTable();
+
+}
+
+}
+
+ 
+
+// Allow Enter key to add result
+
+document.getElementById('matchResult').addEventListener('keypress', function(e) {
+
+if (e.key === 'Enter') addMatchResult();
+
+});
+
+ 
+
+// Auto-update when typing manually
+
+document.querySelectorAll('input[type="number"]').forEach(input => {
+
+input.addEventListener('input', updateTable);
+
+});
+
+ 
+
+updateTable();
+
+</script>
+
+</body>
+
+</html>
